@@ -12,6 +12,13 @@ https://heart-disease-api-n225.onrender.com
 API Docs:
 https://heart-disease-api-n225.onrender.com/docs
 
+## Run with Docker
+
+```bash
+docker pull jiaweiyan1203/heart-disease-api
+docker run -p 10000:10000 jiaweiyan1203/heart-disease-api
+```
+
 ## 📊 Machine Learning Model
 
 Model: Logistic Regression  

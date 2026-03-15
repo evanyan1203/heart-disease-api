@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import pandas as pd
 import joblib
@@ -39,7 +40,7 @@ class HeartInput(BaseModel):
 
 @app.get("/")
 def read_root():
-    return {"message": "Heart Disease Prediction API is running"}
+    return FileResponse("index.html")
 
 @app.post("/predict")
 def predict(data: HeartInput):

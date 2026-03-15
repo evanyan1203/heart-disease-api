@@ -60,60 +60,64 @@ Render (Cloud Deployment)
 
 ### Predict Endpoint
 
-POST `/predict`
+POST /predict
 
-Example request:
+Predicts the probability of heart disease based on clinical features.
 
-```json
+Example Request
 {
-"age": 52,
-"sex": 1,
-"cp": 0,
-"trestbps": 125,
-"chol": 212,
-"fbs": 0,
-"restecg": 1,
-"thalach": 168,
-"exang": 0,
-"oldpeak": 1.0,
-"slope": 2,
-"ca": 2,
-"thal": 3
+  "age": 52,
+  "sex": 1,
+  "cp": 0,
+  "trestbps": 125,
+  "chol": 212,
+  "fbs": 0,
+  "restecg": 1,
+  "thalach": 168,
+  "exang": 0,
+  "oldpeak": 1.0,
+  "slope": 2,
+  "ca": 2,
+  "thal": 3
+}
+Example Response
+{
+  "prediction": 0,
+  "probability": 0.0499,
+  "message": "Low risk"
 }
 
-Example response:
+Where:
 
-{
-"prediction": 0,
-"probability": 0.0499,
-"message": "Low risk"
-}
+prediction = 1 → High risk of heart disease
 
+prediction = 0 → Low risk of heart disease
+
+probability = model confidence score
 
 Project Structure
-
 heart-disease-api
 │
-├── app.py # FastAPI API
-├── train_model.py # model training script
-├── heart_model.pkl # trained model
-├── heart.csv # dataset
-└── requirements.txt
-
+├── app.py            # FastAPI application (prediction API)
+├── train_model.py    # machine learning training script
+├── heart_model.pkl   # trained ML model
+├── heart.csv         # dataset
+└── requirements.txt  # Python dependencies
 Run Locally
-
-Install dependencies
-
+1. Install dependencies
 pip install -r requirements.txt
-
-Run API
-
+2. Start the API server
 uvicorn app:app --reload
-
-Open
-
+3. Open API documentation
 http://127.0.0.1:8000/docs
+
+Swagger UI allows you to test the prediction endpoint directly.
 
 Deployment
 
 The API is deployed on Render.
+
+Live API documentation:
+
+https://heart-disease-api-n225.onrender.com/docs
+

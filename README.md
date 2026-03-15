@@ -47,11 +47,8 @@ ROC-AUC: **0.93**
 
 Confusion Matrix:
 
-Predicted
-               No      Yes
-Actual
-No disease     70      30
-Disease         9      96
+[[70 30]
+ [ 9 96]]
 
 ## 🛠 Tech Stack
 

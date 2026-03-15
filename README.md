@@ -6,12 +6,10 @@ The model is trained using Scikit-learn and deployed as a REST API using FastAPI
 
 ## 🚀 Live Demo
 
-API Base URL:
-
+Web App:
 https://heart-disease-api-n225.onrender.com
 
 API Docs:
-
 https://heart-disease-api-n225.onrender.com/docs
 
 ## 📊 Machine Learning Model

@@ -96,6 +96,7 @@ prediction = 0 → Low risk of heart disease
 probability = model confidence score
 
 Project Structure
+
 heart-disease-api
 │
 ├── app.py            # FastAPI application (prediction API)
@@ -103,11 +104,15 @@ heart-disease-api
 ├── heart_model.pkl   # trained ML model
 ├── heart.csv         # dataset
 └── requirements.txt  # Python dependencies
+
 Run Locally
+
 1. Install dependencies
 pip install -r requirements.txt
+
 2. Start the API server
 uvicorn app:app --reload
+
 3. Open API documentation
 http://127.0.0.1:8000/docs
 

@@ -95,8 +95,9 @@ prediction = 0 → Low risk of heart disease
 
 probability = model confidence score
 
-Project Structure
+## Project Structure
 
+```
 heart-disease-api
 │
 ├── app.py            # FastAPI application (prediction API)
@@ -104,6 +105,7 @@ heart-disease-api
 ├── heart_model.pkl   # trained ML model
 ├── heart.csv         # dataset
 └── requirements.txt  # Python dependencies
+```
 
 Run Locally
 

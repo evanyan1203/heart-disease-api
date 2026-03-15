@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heart Disease Predictor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+      line-height: 1.5;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    input {
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 18px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 24px;
+      padding: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f8f8f8;
+    }
+
+    .error {
+      color: red;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Heart Disease Prediction UI</h1>
+  <p>Enter clinical values below and click Predict.</p>
+
+  <div class="grid">
+    <div class="field"><label>Age</label><input id="age" type="number" value="52" /></div>
+    <div class="field"><label>Sex</label><input id="sex" type="number" value="1" /></div>
+    <div class="field"><label>CP</label><input id="cp" type="number" value="0" /></div>
+    <div class="field"><label>Trestbps</label><input id="trestbps" type="number" value="125" /></div>
+    <div class="field"><label>Chol</label><input id="chol" type="number" value="212" /></div>
+    <div class="field"><label>FBS</label><input id="fbs" type="number" value="0" /></div>
+    <div class="field"><label>Restecg</label><input id="restecg" type="number" value="1" /></div>
+    <div class="field"><label>Thalach</label><input id="thalach" type="number" value="168" /></div>
+    <div class="field"><label>Exang</label><input id="exang" type="number" value="0" /></div>
+    <div class="field"><label>Oldpeak</label><input id="oldpeak" type="number" step="0.1" value="1.0" /></div>
+    <div class="field"><label>Slope</label><input id="slope" type="number" value="2" /></div>
+    <div class="field"><label>CA</label><input id="ca" type="number" value="2" /></div>
+    <div class="field"><label>Thal</label><input id="thal" type="number" value="3" /></div>
+  </div>
+
+  <button onclick="predict()">Predict</button>
+
+  <div id="error" class="error"></div>
+
+  <div id="result" class="result" style="display:none;">
+    <h3>Prediction Result</h3>
+    <p><strong>Prediction:</strong> <span id="prediction"></span></p>
+    <p><strong>Probability:</strong> <span id="probability"></span></p>
+    <p><strong>Message:</strong> <span id="message"></span></p>
+  </div>
+
+  <script>
+    async function predict() {
+      const errorDiv = document.getElementById("error");
+      const resultDiv = document.getElementById("result");
+      errorDiv.textContent = "";
+      resultDiv.style.display = "none";
+
+      const payload = {
+        age: Number(document.getElementById("age").value),
+        sex: Number(document.getElementById("sex").value),
+        cp: Number(document.getElementById("cp").value),
+        trestbps: Number(document.getElementById("trestbps").value),
+        chol: Number(document.getElementById("chol").value),
+        fbs: Number(document.getElementById("fbs").value),
+        restecg: Number(document.getElementById("restecg").value),
+        thalach: Number(document.getElementById("thalach").value),
+        exang: Number(document.getElementById("exang").value),
+        oldpeak: Number(document.getElementById("oldpeak").value),
+        slope: Number(document.getElementById("slope").value),
+        ca: Number(document.getElementById("ca").value),
+        thal: Number(document.getElementById("thal").value)
+      };
+
+      try {
+        const response = await fetch("https://heart-disease-api-n225.onrender.com/predict", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error("Request failed");
+        }
+
+        const data = await response.json();
+
+        document.getElementById("prediction").textContent = data.prediction;
+        document.getElementById("probability").textContent = data.probability;
+        document.getElementById("message").textContent = data.message;
+        resultDiv.style.display = "block";
+      } catch (error) {
+        errorDiv.textContent = "Error: could not connect to the API.";
+        console.error(error);
+      }
+    }
+  </script>
+</body>
+</html>

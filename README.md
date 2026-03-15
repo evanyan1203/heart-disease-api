@@ -64,7 +64,8 @@ POST /predict
 
 Predicts the probability of heart disease based on clinical features.
 
-Example Request
+##Example Request
+```
 {
   "age": 52,
   "sex": 1,
@@ -80,12 +81,16 @@ Example Request
   "ca": 2,
   "thal": 3
 }
+```
 Example Response
+```
 {
   "prediction": 0,
   "probability": 0.0499,
   "message": "Low risk"
 }
+
+```
 
 Where:
 

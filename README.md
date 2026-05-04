@@ -137,3 +137,8 @@ Live API documentation:
 
 https://heart-disease-api-n225.onrender.com/docs
 
+
+
+## Project Status
+This API is deployed and available for testing.
+

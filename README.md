@@ -142,3 +142,9 @@ https://heart-disease-api-n225.onrender.com/docs
 ## Project Status
 This API is deployed and available for testing.
 
+## License
+
+This project is licensed under the MIT License.
+
+
+
